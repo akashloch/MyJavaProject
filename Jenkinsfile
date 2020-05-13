@@ -14,9 +14,6 @@ pipeline {
                 }
             }
         }
-    }
-    agent {label 'linux_slave'}
-    stages{
         stage ('Deploy to Staging'){
             steps {
                 build job:'deploy-to-QA'
@@ -38,6 +35,5 @@ pipeline {
             }
         }
     }
-
     
 }
