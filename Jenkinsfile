@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 pipeline {
 
     agent {label 'master'}
     stages{
+=======
+pipeline{
+    agent any
+    stages {
+>>>>>>> 495292840df570635d5d72fb1d2181bdad1e4734
         stage('Build'){
             steps {
                 sh 'mvn clean package'
