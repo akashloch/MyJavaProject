@@ -1,9 +1,8 @@
 
 pipeline {
 
-    agent any
+    agent {label 'master'}
     stages{
-        agent {label 'master'}
         stage('Build'){
             steps {
                 sh 'mvn clean package'
@@ -15,13 +14,14 @@ pipeline {
                 }
             }
         }
-        agent {label 'linux_slave'}
+    }
+    agent {label 'linux_slave'}
+    stages{
         stage ('Deploy to Staging'){
             steps {
                 build job:'deploy-to-QA'
             }
         }
-        agent {label 'linux_slave'}
         stage ('Deploy to Production'){
             steps{
             
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-
-
     }
+
+    
 }
