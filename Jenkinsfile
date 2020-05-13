@@ -15,11 +15,13 @@ pipeline {
             }
         }
         stage ('Deploy to Staging'){
+            agent{label 'linux_slave'}
             steps {
                 build job:'deploy-to-QA'
             }
         }
         stage ('Deploy to Production'){
+            agent{label 'linux_slave'}
             steps{
             
                 build job: 'deploy-to-prod'
