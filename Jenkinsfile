@@ -1,6 +1,6 @@
 pipeline {
 
-    agent any
+    agent {label 'master'}
     stages{
         stage('Build'){
             steps {
@@ -13,12 +13,13 @@ pipeline {
                 }
             }
         }
+        agent {label 'linux_slave'}
         stage ('Deploy to Staging'){
             steps {
                 build job:'deploy-to-QA'
             }
         }
-
+        agent {label 'linux_slave'}
         stage ('Deploy to Production'){
             steps{
             
